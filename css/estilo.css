@@ -1,0 +1,298 @@
+* { /* RESET DO CSS = tudo que é declarado é aplicado no começo por padrão, OU SEJA, é a primeira coisa que o css vai ler.
+	            pois o CSS ignora os padrões quando não é declarado nada */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box; /*O navegador começa a contar o tamanho do elemento a partir da borda interna da caixa*/
+}
+
+
+body {
+	background-image: url(../img/805197.jpg); /* ./ procura dentro da pasta, ../ procura fora da pasta*/
+	background-size: auto 100vh; /*auto faz manter a proporção do eixo horizontal *, podia ser 100vw mas ela pode achatar*/
+	/* background-repeat: no-repeat; */
+	font-size: 12px;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	height: 100vh; /*Garante que a altura do body seja a mesma*/
+}
+/* REDEFININDO PARA UM SITE RESPONSIVO CHAMADOS DE BREAKPOINT*/
+/*redefine os estilos de body a partir de 400px de largura: */
+@media (min-width: 400px) { 
+	body {
+		font-size: 14px;
+	}
+
+}
+
+/*Breakpoint*/
+@media (min-width: 600px) { /*Pode-se fazer vários @media query*/
+	body {
+		font-size: 18px;
+	}
+
+}
+
+/*Breakpoint*/
+@media (min-width: 1300px) { /*Pode-se fazer vários @media query*/
+	body {
+		font-size: 22px;
+		/* background-image: none; mudar apenas para visualização e entrendimeto */
+		/* background-color: cadetblue; */
+	}
+
+}
+
+header {
+	height: 100vh; /* 100% do viewport height*/
+	display: flex; /* porém o Flex faz todos virarem coluna*/
+	justify-content: center; /* por causa do flex*/
+	align-items: center; /* por causa do flex*/
+}
+
+.menu {
+	background-color: rgb(238, 238, 238);
+	position: fixed;
+	width: 100vw;
+	top: 0; /*nav colado no topo do navegador e só funciona se o position estiver declarado*/
+	z-index: 1; /*arruma o menu ???? não entendi*/
+}
+
+.titulo {
+	transform: scale(0.2) translateY(50vh);
+	opacity: 0;
+	
+	animation: 1s/*delay*/ linear 2s animeTitulo forwards; /*pode configurar o modo de exibição na imagem, definir uma quantidade de animação e parar; outras formas de mostrar a animação*/
+}
+
+@keyframes animeTitulo { 
+	/*ou from { use a imaginação para criar efeitos diferentes*/
+	0% {transform: scale(0.2) translateY(50vh); /*estado inicial declarado no seletor . titulo*/
+		opacity: 0; 
+  
+	}
+	/*ou to {*/
+	100% {
+		transform: scale(1) translateY(0); /*scale (1) padrão começa do zero */
+	    opacity: 1; /*opacit 1 padrao, quanto menor que 1 mais transparente*/
+
+	}
+}
+
+
+
+a {
+	text-decoration: none;
+	color: teal;
+}
+
+.contato a {
+	color: whitesmoke;
+	font-size: 4em;
+	transition: text-shadow 1s;
+}
+
+.contato a:active, /*é o momento q o usuario clica no elemento no celular pois no phone não tem o hover*/
+.contato a:hover {
+	text-decoration: none;
+	text-shadow: 0px 0px 10px rgba(255,255,255,.5); /*sombra*/
+}
+
+.contato .icons {
+	text-align: center;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.menu a {
+	display: block;
+	padding: 10px 20px;
+	transition: background-color 1s, color 2s; /*quais propriedades do elemento que será mudado a partir do hover abaixo*/
+	/*transition: 3s; /*pode especificar as propriedades ou diretamente com o tempo!!!!! Porém melhor prática é especificar quais as propriedades que a transição aconteça.*/
+}
+
+.menu a:active, /*para funcionar quando toque de dedos nas telas*/
+.menu a:hover { /*Ele troca o fundo e a cor da fonte do menu*/
+	background-color: teal;
+	color: white;
+}
+
+.menu ul {
+	display: flex; /*A lista coloca as palavras uma ao lado da outra, ou seja, a horizontal dentro do conteiner*/
+	justify-content: space-around; /*usado em conjunto com display: flex = Deixa um espaço entre as palavras*/
+}
+
+.menu li { /* sempre usar classes e nesse caso não precisa de usar .menu nav li. Pode ir direto ao ponto mais detro da hierarquia*/
+	list-style: none;
+}
+
+.site-subtitle, .site-title {
+	text-align: center;
+	color: whitesmoke;
+}
+
+.site-title {
+	font-size: 4em;
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.site-subtitle {
+	font-family: 'Baloo Da 2', cursive;
+}
+
+.sobre,
+.contato, .portfolio {
+	/* background-color: teal; */
+	padding: 2em;
+	min-height: 100vh; /*define que a section portifolio seja todo do tamanho da tela*/
+	
+}
+
+@media (min-width: 1200px){
+ .conteiner {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	/*margin: 0 auto; ele está zendo o top e botton e left e right auto*/
+	
+}
+
+.sobre a {
+	color: white;
+	text-decoration: underline cyan;
+}
+
+}
+
+.sobre a:hover {
+	background-color: crimson;
+}
+
+.sobre,
+.contato h2, .portfolio h2 {
+	font-family: 'Baloo Da 2', cursive;
+	margin-bottom: 1.5em;
+}
+
+.sobre p {
+	color: white; /*cor do texto*/
+	margin-bottom: 1em; /*margin dos p*/
+	text-indent: 1.4em; /* avanço do parágrafo*/
+	text-align: justify;
+
+}
+
+.portfolio .grid {
+	display: grid; /*grades*, mantem as linhas e vc escolhe colunas que quer */
+	gap: 2em; /* usado apenas qdo grid, ele define o espaçamento entre cada col ou linha. Não usar o margin*/
+	
+	/*grid-template-columns: 240px 500px 300px;*/ /* (3 colunas) controla a largura de cada coluna*/
+    
+}
+
+@media (min-width: 560px) {
+	.portfolio .grid {
+		grid-template-columns: 240px 240px; /*controla a largura de cada coluna*/
+	}	
+}
+
+@media (min-width: 880px) {
+	.portfolio .grid {
+		grid-template-columns: repeat(3, 260px); /*faz 3 colunas de 240px*/
+		justify-content: center; /*usado quando usa display grid --> tem outras opcoes de center */
+		/*align-items: center;*/ /*afasta os itens*/
+		align-content: center;
+		/* height: calc(100vh - 4em - 48px - 1.5em); */
+	}	
+}
+
+.portfolio figure {
+	text-align: center;
+}
+
+.img-portfolio {
+	height: 180px;
+	width: 100%;
+	object-fit: cover; /*as imagens ocupam o mesmo espaço e resolve o problema de deformar a imagem*/
+	object-position: left bottom; /*ajusta o alinhameto da imagem internamente. Pode usar pixels, eixo x ou eixo y*/
+	/*border-radius: 10%; *//* faz arrendondamento das bordas*/
+	transition: transform 500ms; /*tempo para ser aplicado o hover scale 1.3 da imagem*/
+	
+}
+
+.img-portfolio:hover {
+	/*transform: scale(1.3); /*pode rotacionar a imgem rotate(45deg) ou outro sentido rotate(-45deg) NOTA: Tem que estar associado ao trasition acima*/
+}
+
+.flip-card {
+	background-color: cadetblue;
+	perspective: 500px; /*efeito 3d o valor dela eq ao quao perto o usuario está perto do efeito*/
+}
+
+.card {
+    
+	position: relative; /*os elementos card-front e card-back estão relativos a posição do elemento mae. do card inteiro, ou seja estão alinhados mae deles que é a div card*/
+	transform-style: preserve-3d; /*é o conjunto do transform que rotaciona + backface-visibility: hidden nos dois + posicionados no mesmo ele. mae*/
+	transition: transform 1s; /*virando as imagens*/
+}
+
+.flip-card:hover .card { /*quando der hover na div de fora, a div card que está dentro dela vai rotacionar, ou seja, dar o transform rotate 180deg. ELA NÃO EGASGA MAIS NA ANIMAÇÃO*/
+	transform: rotateY(180deg);
+}
+
+.card-back {
+	color: black;
+	background-color: white;
+	height: 180px;
+	width: 100%;
+	transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+	position: absolute;
+	left: 0;
+	top: 0;
+	backface-visibility: hidden;
+}
+
+.sobre img { /*Ela criou . sobre . avatar em figure da img*/
+	float: right;
+	clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+	margin-left: 2em;
+	height: 300px;
+	width: 300px;
+	/* border-radius: 50%; arredonda a foto*/
+	object-fit: cover;
+	object-position: center ;
+	/* transition: transform 500ms; */
+}
+
+@media (max-width: 600px) {
+	.sobre img {
+		clip-path: polygon(50% 18%, 100% 0, 100% 70%, 50% 100%, 0 70%, 0% 0%);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media (min-width: 1200px) {
+	.img-portfolio {
+		height: auto;
+		width: 100%;
+
+} */
